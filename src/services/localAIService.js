@@ -2,9 +2,9 @@ import axios from 'axios';
 
 export const sendToLocalAI = async (userMessage, chatHistory = []) => {
     try {
-        const response = await axios.post('http://localhost:5000/api/chat', {
+        const response = await axios.post(' https://adox-ai-local-backend.onrender.com/api/chat', {
             prompt: userMessage,
-            history: chatHistory 
+            history: chatHistory
         });
 
         return response.data.reply;
