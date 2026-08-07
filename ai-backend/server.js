@@ -40,12 +40,16 @@ app.post('/api/chat', async (req, res) => {
         res.json({ reply: response.data.message.content });
     } catch (error) {
         console.error("Local AI Error:", error.message);
-        res.status(500).json({ error: "Local AI se connect nahi ho paya." });
+        res.status(500).json({
+            error: "Rao Pro AI is powered by a heavy Llama 3 model which cannot be hosted on a free cloud tier To experience this please clone my GitHub repository and run it locally with Ollama!"
+        });
+
+
     }
 });
 
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`🚀 Adox.ai Local Server started on http://localhost:${PORT}`);
 }); 

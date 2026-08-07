@@ -31,7 +31,7 @@ export default function ChatInterface() {
 
 
 
-    const BACKEND_URL = "http://localhost:3000/api/chat";
+    const BACKEND_URL = "https://adox-ai.onrender.com/api/chat";
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -268,7 +268,7 @@ export default function ChatInterface() {
 
         try {
             console.log("🔊 Backend se aawaz ban rahi hai, wait karo...");
-            const response = await fetch("http://localhost:3000/api/speak", {
+            const response = await fetch("https://adox-ai.onrender.com/api/speak", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

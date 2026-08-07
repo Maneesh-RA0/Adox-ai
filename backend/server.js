@@ -117,7 +117,15 @@ app.post('/api/speak', speakLimiter, async (req, res) => {
         }
 
         const safeText = text.trim().substring(0, 500);
-        const voiceBackendDir = "C:\\Users\\Manish\\OneDrive\\Desktop\\Adox.ai\\adox-ai\\voice-backend";
+        const voiceBackendDir = path.join(__dirname, '../voice-backend');
+        const isWindows = process.platform === 'win32';
+
+        if (!isWindows) {
+            return res.status(200).json({
+                mode: 'browser_fallback',
+                message: 'Cloud environment detected. Using fallback voice synthesis.'
+            });
+        }
         const piperDir = voiceBackendDir;
         const piperPath = path.join(piperDir, 'piper.exe');
         const modelPath = path.join(voiceBackendDir, 'en_US-amy-medium.onnx');
@@ -146,7 +154,9 @@ app.post('/api/speak', speakLimiter, async (req, res) => {
                     res.setHeader('Content-Type', 'audio/wav');
                     res.send(audioBuffer);
 
-                    fs.unlinkSync(outputPath);
+                    if (fs.existsSync(outputPath)) {
+                        fs.unlinkSync(outputPath);
+                    }
                 } catch (fileErr) {
                     if (!res.headersSent) {
                         res.status(500).json({ error: 'Failed to read audio' });
@@ -154,25 +164,24 @@ app.post('/api/speak', speakLimiter, async (req, res) => {
                 }
             } else {
                 if (!res.headersSent) {
-                    res.status(500).json({ error: 'Engine failed' });
+                    res.status(500).json({ error: 'Piper process exited with error' });
                 }
             }
         });
 
         piperProcess.on('error', (err) => {
-            console.error("❌ Voice Engine Error:", err);
             if (!res.headersSent) {
-                res.status(500).json({ error: 'Could not start engine' });
+                res.status(500).json({ error: 'Failed to start Piper process' });
             }
         });
 
-    } catch (error) {
-        console.error("Speak API Error:", error);
+    } catch (err) {
         if (!res.headersSent) {
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(500).json({ error: 'Internal server error in voice generation' });
         }
     }
 });
+
 
 
 app.listen(PORT, () => {
