@@ -10,6 +10,6 @@ export const sendToLocalAI = async (userMessage, chatHistory = []) => {
         return response.data.reply;
     } catch (error) {
         console.error("Local AI Error:", error);
-        return "Bhai, mera server theek se connect nahi hua hai. Ek baar check kar lo!";
+        return "Rao Pro AI is powered by a heavy Llama 3 model which cannot be hosted on a free cloud tier To experience this please clone my GitHub repository and run it locally with Ollama!";
     }
 };
