@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { auth } from './services/firebaseConfig';
-import Login from './pages/Login'; // Ye teri nayi wali file hai jisme humne animation dala hai
+import Login from './pages/Login'; 
 import HomeScreen from './components/Home/HomeScreen';
 import ChatInterface from './pages/ChatInterface';
 import './styles/globals.css';
