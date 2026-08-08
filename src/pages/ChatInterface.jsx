@@ -262,12 +262,12 @@ export default function ChatInterface() {
     };
     const speakText = async (text) => {
         if (window.currentAudio && !window.currentAudio.paused) {
-            console.log("⏳ Wait karo, pehle ki aawaz chal rahi hai...");
+            console.log("⏳ Please wait, previous audio is still playing...");
             return;
         }
 
         try {
-            console.log("🔊 Backend se aawaz ban rahi hai, wait karo...");
+            console.log("🔊 Generating voice from backend, please wait...");
             const response = await fetch("https://adox-ai.onrender.com/api/speak", {
                 method: "POST",
                 headers: {
@@ -275,24 +275,47 @@ export default function ChatInterface() {
                 },
                 body: JSON.stringify({ text: text }),
             });
-
             if (!response.ok) {
-                console.error("❌ Aawaz generate nahi ho payi. Backend error.");
+                console.error("❌ Failed to generate voice. Backend error.");
+                window.currentAudio = null;
                 return;
             }
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                const data = await response.json();
+                if (data.mode === 'browser_fallback') {
+                    console.log("☁️ Render Bypass: Using browser fallback voice...");
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.onend = () => { window.currentAudio = null; };
+                    window.currentAudio = utterance;
+
+                    window.speechSynthesis.speak(utterance);
+                    return;
+                }
+            }
             const audioBlob = await response.blob();
-            const audioUrl = URL.createObjectURL(audioBlob)
+            const audioUrl = URL.createObjectURL(audioBlob);
             const audio = new Audio(audioUrl);
+
             window.currentAudio = audio;
-            audio.play();
-            console.log("▶️ Priyamvada ki asli aawaz play ho rahi hai!");
+
+            audio.play().catch(err => {
+                console.error("❌ Audio playback error:", err);
+                window.currentAudio = null;
+            });
+
+            console.log("▶️ Playing primary AI voice!");
+
             audio.onended = () => {
                 URL.revokeObjectURL(audioUrl);
+                window.currentAudio = null;
             };
 
         } catch (error) {
-            console.error("❌ Network ya Audio play error:", error);
+            console.error("❌ Network or Audio play error:", error);
+            window.currentAudio = null;
         }
+
     };
 
 
