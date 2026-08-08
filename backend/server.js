@@ -120,14 +120,15 @@ app.post('/api/speak', speakLimiter, async (req, res) => {
         const voiceBackendDir = path.join(__dirname, '../voice-backend');
         const isWindows = process.platform === 'win32';
 
-        if (!isWindows) {
-            return res.status(200).json({
-                mode: 'browser_fallback',
-                message: 'Cloud environment detected. Using fallback voice synthesis.'
-            });
-        }
         const piperDir = voiceBackendDir;
-        const piperPath = path.join(piperDir, 'piper.exe');
+        let piperPath;
+
+        if (isWindows) {
+            piperPath = path.join(piperDir, 'piper.exe');
+        } else {
+            piperPath = path.join(piperDir, 'linux-bin', 'piper_amd64', 'piper', 'piper');
+        }
+
         const modelPath = path.join(voiceBackendDir, 'en_US-amy-medium.onnx');
         const configPath = path.join(voiceBackendDir, 'en_US-amy-medium.onnx.json');
         const outputPath = path.join(voiceBackendDir, `output_${Date.now()}.wav`);
