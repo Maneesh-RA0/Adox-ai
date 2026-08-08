@@ -126,8 +126,9 @@ app.post('/api/speak', speakLimiter, async (req, res) => {
         if (isWindows) {
             piperPath = path.join(piperDir, 'piper.exe');
         } else {
-            piperPath = path.join(piperDir, 'linux-bin', 'piper_amd64', 'piper', 'piper');
+            return res.status(200).json({ mode: 'browser_fallback' });
         }
+
 
         const modelPath = path.join(voiceBackendDir, 'en_US-amy-medium.onnx');
         const configPath = path.join(voiceBackendDir, 'en_US-amy-medium.onnx.json');
