@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import '../styles/animations.css'; // Path theek rakhna!
+import '../styles/animations.css';
 import ALLAiChatThemes from '../components/NormalChatTheme/ALLAiChatThemes';
-import { auth } from '../services/firebaseConfig'; // Tera firebase auth import
+import { auth } from '../services/firebaseConfig';
 import { saveChatToDB, getUserChatHistory, getSpecificChat } from '../services/chatService';
 import ChatHistoryMenu from '../components/ChatHistoryMenu';
 import { onAuthStateChanged } from 'firebase/auth';
-import { sendToLocalAI } from '../services/localAiService';
+import { sendToLocalAI } from '../services/localAIService';
 
 
 

@@ -15,7 +15,6 @@
     --muted: #8d8da3;
 }
 
-/* ================= STARFIELD / FLOATING BUBBLES ================= */
 @keyframes twinkle {
 
     0%,
@@ -735,13 +734,6 @@ body {
 .btn-cyber:hover::before {
     left: 100%;
 }
-
-/* =========================================================================
-   RAO PRO AI — "HELLFORGE TERMINAL" VISUAL SYSTEM
-   Zero blue, zero orange, zero red. Obsidian black with layered menace violet.
-   ========================================================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap');
 
 :root {
     --void: #05030c;
