@@ -5,7 +5,7 @@
 > 
 > 🟢 **Want to test it live?** 
 > Join my Discord server and drop a message! I will boot up the local AI engine for you.
-> 👉 **[Join My Discord Server Here](YAHAN_APNA_DISCORD_LINK_DAAL_DENA)**
+> 👉 **[Join My Discord Server Here](https://discord.gg/uVapCwvps)**
 
 ---
 ## 👨‍💻 Developer Bio & Architectural Milestone
