@@ -6,7 +6,6 @@ import HomeScreen from './components/Home/HomeScreen';
 import ChatInterface from './pages/ChatInterface';
 import './styles/globals.css';
 import './styles/animations.css';
-import './styles/darkTheme.css';
 import AISelection from './pages/AISelection';
 
 function ProtectedRoute({ children }) {
