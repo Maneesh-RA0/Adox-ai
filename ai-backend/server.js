@@ -31,7 +31,7 @@ app.post('/api/chat', async (req, res) => {
 
         ollamaMessages.push({ role: 'user', content: prompt });
 
-        const response = await axios.post('http://127.0.0.1:11434/api/chat', {
+        const response = await axios.post('https://untaken-geiger-regular.ngrok-free.dev/api/chat', {
             model: 'llama3',
             messages: ollamaMessages,
             stream: false
