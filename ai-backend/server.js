@@ -37,6 +37,7 @@ app.post('/api/chat', async (req, res) => {
             stream: false
         });
 
+
         res.json({ reply: response.data.message.content });
     } catch (error) {
         console.error("Local AI Error:", error.message);
