@@ -1,5 +1,12 @@
 # 🚀 Rao Pro AI - Next-Gen Conversational AI
 🔗 **Live Project Link:** [https://adox-ai.vercel.app/]
+> 🔴 **SERVER STATUS NOTICE:** 
+> **Rao Pro AI runs locally on my personal machine's hardware.** If you test the live link and the AI is unresponsive, it means my local server (PC) is currently offline. 
+> 
+> 🟢 **Want to test it live?** 
+> Join my Discord server and drop a message! I will boot up the local AI engine for you.
+> 👉 **[Join My Discord Server Here](YAHAN_APNA_DISCORD_LINK_DAAL_DENA)**
+
 ---
 ## 👨‍💻 Developer Bio & Architectural Milestone
 **Built by Maneesh**
