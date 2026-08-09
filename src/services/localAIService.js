@@ -10,6 +10,7 @@ export const sendToLocalAI = async (userMessage, chatHistory = []) => {
         return response.data.reply;
     } catch (error) {
         console.error("Local AI Error:", error);
-        return "Rao Pro AI is powered by a heavy Llama 3 model which cannot be hosted on a free cloud tier To experience this please clone my GitHub repository and run it locally with Ollama!";
+        return "💤 Rao Pro AI is currently offline because the host PC is sleeping! To use the AI, please join our Discord and message the owner in the #dev-talks channel to boot up the server. Join here: [https://discord.gg/uYFVBVCaf]";
+
     }
 };
